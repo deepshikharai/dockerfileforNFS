@@ -13,4 +13,4 @@ COPY --from=clone /app/${path} /app
 #CMD mvn test -Dmaven.test.failure.ignore=true
 #CMD cp -R target/surefire-reports /app/${folder}
 RUN ls -al
-CMD ["sh","-c","mvn test -Dmaven.test.failure.ignore=true -e && export my_folder=report_$(date +%Y%m%d_%H%M%S) && mkdir /data/${my_folder} && cp -R /app/target/surefire-reports /data/${my_folder} && echo Reports stored in ${my_folder}"]
+CMD ["sh","-c","mvn test -Dmaven.test.failure.ignore=true -e && export my_folder=report_$(date +%Y%m%d_%H%M%S) && mkdir -p /data/${my_folder} && cp -R /app/target/surefire-reports /data/${my_folder} && echo Reports stored in ${my_folder}"]
